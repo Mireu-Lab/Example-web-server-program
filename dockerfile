@@ -1,8 +1,9 @@
-FROM python:3
+FROM gcc:12.3
 
 RUN mkdir APP
+WORKDIR APP/
+
 COPY . .
 
-RUN pip3 install requirements.txt
-
-CMD "python3 main.py"
+EXPOSE 80
+CMD "./main.out"
