@@ -1,9 +1,9 @@
-FROM gcc:12.3
+FROM node:20
 
-RUN mkdir APP
+RUN mkdir APP/
 WORKDIR APP/
 
 COPY . .
 
-EXPOSE 80
-CMD "./main.out"
+RUN npm i
+CMD "nodejs main.js"
