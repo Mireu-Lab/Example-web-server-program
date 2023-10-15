@@ -1,18 +1,15 @@
 package main
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/echo/v4"
 )
 
 func main() {
-	router := gin.Default()
-	router.LoadHTMLGlob("templates/*")
+	e := echo.New()
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{})
+	e.GET("/", func(c echo.Context) error {
+		return c.File("templates/index.html")
 	})
 
-	router.Run(":80")
+	e.Logger.Fatal(e.Start(":8080"))
 }
